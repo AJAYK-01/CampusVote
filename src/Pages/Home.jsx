@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import { injected } from "../Components/Wallet/Connectors"
 
+
 function Home() {
 
     const history = useHistory()
@@ -57,6 +58,15 @@ function Home() {
             </div>
         );
     }
+    // const history = useHistory();
+
+    // return (
+    //     <div className="App">
+    //         campus vote
+
+    //         <button onClick={() => {history.push('/login')}}>LOGIN</button>
+    //     </div>
+    // );
 }
 
 export default Home;
