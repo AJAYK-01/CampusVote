@@ -1,28 +1,23 @@
-# BASIC SERVER: at localhost:5000
-
 from flask import Flask, jsonify, request
-from flask_cors import CORS
 from transfer_token import transfer_token
-
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/')
-def hello():
-    return jsonify(message='you are connected to the server')
-
-
-@app.route('/post/', methods=['POST'])
-def post():
-    data = request.get_json()
-    print(data)
-    return jsonify(message='your data was sent')
-
-
-@app.route('/requestTokens', methods=['POST'])
-def request_tokens():
+@app.route("/", methods=['GET', 'POST'])
+def helloWorld():
+    if request.method == 'GET':
+        key_dict = request.args.get('account')
+        account = key_dict
+        try:
+            print(account)
+            res = transfer_token(account)
+            return jsonify(res)
+        except Exception as e:
+            print(e)
+            return "error"
     if request.method == 'POST':
         key_dict = request.get_json()
         account = key_dict["account"]
@@ -33,7 +28,35 @@ def request_tokens():
         except Exception as e:
             print(e)
             return "error"
+      # return "Hello, cross-origin-world!"
+      # return jsonify({"status": "perfect"})
 
 
-if __name__ == '__main__':
-    app.run()
+@app.route('/requestTokens', methods=['GET'])
+def request_tokens():
+    if request.method == 'GET':
+        key_dict = request.args.get('account')
+        account = key_dict
+        try:
+            print(account)
+            res = transfer_token(account)
+            return jsonify(res)
+        except Exception as e:
+            print(e)
+            return "error"
+
+    if request.method == 'POST':
+        key_dict = request.get_json()
+        account = key_dict["account"]
+        try:
+            print(account)
+            res = transfer_token(account)
+            return jsonify(res)
+        except Exception as e:
+            print(e)
+            return "error"
+    elif request.method == 'OPTIONS':
+        return "Ok"
+
+
+app.run(host='0.0.0.0', port=8080, debug=True)
