@@ -1,9 +1,16 @@
 # CampusVote
 
-### To run this:
+Blockchain based Voting Platform for Transparent Campus Elections.
 
-- ``` yarn install ``` , then
+## Objective
 
-- ``` yarn start ```
+To make a transparent online voting platform for Colleges using blockchain technology.
 
-if any module not found error comes up do a ``` rm yarn.lock ``` and then ``` yarn install ``` and then again ``` yarn start ```
+## Features 
+
+- Faster result declaration.
+- Less effort of manual counting.
+- Seamless, yet transparent voting even during lockdowns.
+- Less need for disputes as votes and data are public and immutable thanks to blockchain.
+
+
