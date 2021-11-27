@@ -71,12 +71,8 @@ class AdminService {
     }
 
     async addCandidate(name, party, manifesto, constituency) {
-        name = "hehehhdehe";
-        party = "fggf";
-        manifesto = "kill everyone";
-        constituency = 3334
         await this.fetchAccount();
-        const result = await this.ElectionContract.methods.addCandidate(name, party, manifesto, constituency).call();
+        const result = await this.ElectionContract.methods.addCandidate(name, party, manifesto, constituency).send();
         console.log(result);
     }
 

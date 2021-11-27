@@ -25,11 +25,9 @@ function VotePage() {
             optionstring.push(sl + ". " + candidate.name + " - " + candidate.party);
         });
 
-        // getCount();
         // console.log(optionstring);
         setOptions(optionstring);
         setTokenReceived(true);
-        // console.log(candidates);
     }
 
     const [question, setQuestion] = useState("Choose your Leader!!");
