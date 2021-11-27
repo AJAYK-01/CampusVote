@@ -3,13 +3,21 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import VoteService from '../Helpers/voter'
 
 function VotePage() {
 
 
+  const voter = new VoteService();
+
+
   const [tokenReceived, setTokenReceived] = useState(false);
-  function receiveToken() {
+  async function receiveToken() {
     // function to receive tokens
+    const count = await voter.getCandidateCount();
+    const candidates = await voter.fetchCandidates()
+
+    setOptions(candidates)
     setTokenReceived(true)
 }
 
@@ -26,21 +34,13 @@ function VotePage() {
   }
 
   const [options, setOptions] = useState([
-    {
-      value: "option 1",
-    },
-    {
-      value: "option 2",
-    },
-    {
-      value: "option 3",
-    },
-    {
-      value: "option 4",
-    },
+    'option 1',
+    'option 2',
+    'option 3',
+    'option 4'
   ]);
 
-  const selectionOptions = [{ value: "select your option" }, ...options];
+  const selectionOptions = ['Select your option', ...options];
 
   
 
@@ -63,7 +63,7 @@ function VotePage() {
               aria-label="voting options"
               onChange={(event) => setSelectedOption(event.target.value)}
             >
-              {selectionOptions.map(({ value }, index) => (
+              {selectionOptions.map((value, index) => (
                 <option key={index}>{value}</option>
               ))}
             </Form.Select>

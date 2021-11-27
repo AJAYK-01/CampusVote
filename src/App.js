@@ -4,10 +4,11 @@ import './App.css';
 import Home from './Pages/Home'
 import VotePage from './Pages/VotePage'
 import Login from './Pages/Login';
+import Admin from './Pages/Admin';
 import { AuthContext } from './Contexts/AuthContext';
 
-
 function App() {
+
 
   const { login, wallet } = useContext(AuthContext);
   const { loggedIn } = login;
@@ -21,6 +22,11 @@ function App() {
         <Route path="/vote">
           {
             loggedIn && walletConnected ? <VotePage /> : <Redirect to='/login' />
+          }
+        </Route>
+        <Route path="/admin">
+          {
+            loggedIn && walletConnected ? <Admin /> : <Redirect to='/' />
           }
         </Route>
       </Switch>
