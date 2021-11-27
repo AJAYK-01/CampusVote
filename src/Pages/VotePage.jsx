@@ -6,7 +6,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import VoteService from "../Helpers/voter";
 
 function VotePage() {
-    
+
   const voter = new VoteService();
 
   const [tokenReceived, setTokenReceived] = useState(false);
@@ -14,7 +14,6 @@ function VotePage() {
 
   async function receiveToken() {
     const candidates = await voter.fetchCandidates();
-    getCount();
     setOptions(candidates);
     setTokenReceived(true);
   }
@@ -39,8 +38,6 @@ function VotePage() {
 
   const selectionOptions = ["Select your option", ...options];
 
-  useEffect(() => {
-  }, []);
 
   return (
     <Container
