@@ -5,11 +5,25 @@ import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 function VotePage() {
+
+
   const [tokenReceived, setTokenReceived] = useState(false);
+  function receiveToken() {
+    // function to receive tokens
+    setTokenReceived(true)
+}
 
   const [question, setQuestion] = useState("sample question");
+  
 
   const [selectedOption, setSelectedOption] = useState(null);
+  function sendVote(event) {
+    event.preventDefault();
+    // function to get the selection option
+    console.log(selectedOption);
+
+    // send the selectedOption to blockchain
+  }
 
   const [options, setOptions] = useState([
     {
@@ -28,17 +42,10 @@ function VotePage() {
 
   const selectionOptions = [{ value: "select your option" }, ...options];
 
-
-  function receiveToken() {
-      // function to receive tokens
-      setTokenReceived(true)
-  }
+  
 
 
-  function sendVote(event) {
-    event.preventDefault();
-    console.log(selectedOption);
-  }
+  
 
   return (
     <Container
