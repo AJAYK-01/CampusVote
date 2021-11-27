@@ -20,7 +20,7 @@ def transfer_token(address):
 
     transaction = {
         'to': address,
-        'value': 1000000000000000,
+        'value': 100000000000000000,
         'gas': 20000000,
         'gasPrice': 10000000000,
         'nonce': w3.eth.getTransactionCount(account.address),

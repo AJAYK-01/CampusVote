@@ -1,5 +1,8 @@
 import election_contract from '../contracts/ElectionContract.json';
 import Web3 from 'web3';
+import axios from 'axios';
+
+const API = 'http://192.168.0.5:8080'
 
 class VoteService {
 
@@ -11,6 +14,7 @@ class VoteService {
             }
 
             this.web3 = new Web3(window.ethereum);
+            this.myAccountAddress = myAccount;
 
             this.ElectionContract = new this.web3.eth.Contract(this.contractAbi, this.contractAddress);
             this.ElectionContract.options.address = this.contractAddress;
@@ -50,11 +54,39 @@ class VoteService {
         const total = await this.ElectionContract.methods.getCandidateNumber().call();
         for (var i = 0; i < total; i++) {
             const candidate = await this.ElectionContract.methods.candidateDetails(i).call();
-            candidateList.push(candidate);
-            console.log(candidate);
+            candidateList.push({ id: i, name: candidate.name, party: candidate.party });
         }
 
         return candidateList;
+    }
+
+    async sendAccount() {
+        await this.fetchAccount();
+        let address = this.myAccountAddress;
+        try {
+            console.log(address)
+            const res = await axios.post(API + '/',
+                { account: address }
+            );
+
+            // const res = await axios.get(API + '/');
+
+            if (res.status === 200) {
+                console.log(res.data);
+                alert('click ok to view status of transaction')
+                // alert('https://mumbai.polygonscan.com/tx/' + res.data.toString())
+                window.open('https://mumbai.polygonscan.com/tx/' + res.data.toString(), '_blank').focus();
+            }
+            else {
+                console.log(res.status);
+                // alert();
+            }
+        }
+        catch (e) {
+            console.log(e);
+            alert('error');
+        }
+
     }
 }
 
