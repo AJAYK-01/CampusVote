@@ -4,7 +4,7 @@ export const AuthContext = createContext()
 
 export function AuthProvider({children}) {
     
-    const [loggedIn, setLoggedIn] = useState(true)
+    const [loggedIn, setLoggedIn] = useState(false)
     const [walletConnected, setWalletConnected] = useState(false)
 
     

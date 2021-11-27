@@ -7,12 +7,20 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
+
 
 function Login() {
   const history = useHistory();
 
+  const [formData, setformData] = useState({
+    username: '',
+    email: 'a@a.com',
+    password: ''
+  })
+
   const { login, wallet } = useContext(AuthContext);
-  const { loggedIn } = login;
+  const { loggedIn, setLoggedIn } = login;
   const { walletConnected, setWalletConnected } = wallet;
   const [error, setError] = useState(false);
 
@@ -30,12 +38,43 @@ function Login() {
       });
   };
 
-  const redirectToVote = (e) => {
+  const loginToVote = (e) => {
     e.preventDefault();
+
+    axios({
+      method: 'POST',
+      data: formData,
+      url: 'http://localhost:8000/auth/api/login',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
     if (loggedIn && walletConnected) {
       history.push("/vote");
     }
   };
+
+  const register = (e) => {
+    e.preventDefault();
+    axios({
+      method: 'POST',
+      data: formData,
+      url: 'http://localhost:8000/auth/api/register',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    setLoggedIn(true)
+  }
+
+  const onFormValueChange = (e) => {
+    e.preventDefault();
+    setformData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
 
   useEffect(() => {
     connect();
@@ -73,18 +112,34 @@ function Login() {
           <Form.Control
             className="my-2"
             type="text"
+            name="username"
             placeholder="Enter username"
+
+            value="exampleuser"
+            onChange={onFormValueChange}
           />
           <Form.Control
             className="my-2"
             type="password"
+            name="password"
             placeholder="Enter password"
+            
+            value="password123"
+            onChange={onFormValueChange}
           />
           <Button
             type="button"
             size="lg"
-            className="w-100"
-            onClick={redirectToVote}
+            className="w-100 my-2"
+            onClick={register}
+          >
+            REGISTER
+          </Button>
+          <Button
+            type="button"
+            size="lg"
+            className="w-100 my-2"
+            onClick={loginToVote}
           >
             {loggedIn ? "VOTE" : "LOGIN"}
           </Button>
