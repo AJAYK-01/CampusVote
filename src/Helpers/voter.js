@@ -2,7 +2,7 @@ import election_contract from '../contracts/ElectionContract.json';
 import Web3 from 'web3';
 import axios from 'axios';
 
-const API = 'http://192.168.0.5:8080'
+const API = 'https://CampusVoteBackend.ajayk-01.repl.co'
 
 class VoteService {
 
