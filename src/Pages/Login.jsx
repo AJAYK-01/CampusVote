@@ -81,7 +81,7 @@ function Login() {
             placeholder="Enter password"
           />
           <Button
-            type="submit"
+            type="button"
             size="lg"
             className="w-100"
             onClick={redirectToVote}
