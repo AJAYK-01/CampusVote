@@ -5,6 +5,10 @@
 /SERVER/campusvote
 /SERVER/.env
 /.pnp
+/.firebase/
+firebase.json
+.firebaserc
+yarn.lock
 .pnp.js
 
 # testing
