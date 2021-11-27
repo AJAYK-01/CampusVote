@@ -19,6 +19,7 @@ function Home() {
                 myAccount = myAccount[0]
             }
             // console.log(myAccount);
+            // await sendAccount(myAccount);
             await sendAccount(myAccount);
         } catch (e) {
             console.log(e);

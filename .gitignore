@@ -4,6 +4,7 @@
 /node_modules
 /SERVER/campusvote
 /SERVER/.env
+.env
 /.pnp
 .pnp.js
 

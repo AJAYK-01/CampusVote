@@ -1,9 +1,22 @@
+import VoteService from '../Helpers/voter';
+import AdminService from '../Helpers/admin';
+
+import election_contract from '../contracts/ElectionContract.json';
+require('dotenv').config()
+
 export default function VotePage() {
 
-    function onSubmit(e) {
+
+    async function onSubmit(e) {
         e.preventDefault();
 
-        console.log('voted');
+        const service = new VoteService();
+        await service.fetchCandidates();
+        await service.getCandidateCount();
+
+        // const service = new AdminService();
+        // await service.isEnded();
+        // await service.getCandidateCount();
     }
 
     return (
