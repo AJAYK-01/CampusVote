@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import App from "./App";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { Web3ReactProvider } from "@web3-react/core";

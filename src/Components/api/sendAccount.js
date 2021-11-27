@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = 'http://192.168.0.2:8080'
+const API = 'https://CampusVoteBackend.ajayk-01.repl.co'
 
 // get auth token
 const token = '';

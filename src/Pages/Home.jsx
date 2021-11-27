@@ -1,72 +1,72 @@
-import { useWeb3React } from "@web3-react/core"
-import { web3 } from "web3";
-import sendAccount from '../Components/api/sendAccount';
+import React from "react";
 import { useHistory } from "react-router";
-import { useEffect, useState } from "react";
-import { injected } from "../Components/Wallet/Connectors"
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
+import VoteService from "../Helpers/voter";
 
 
 function Home() {
+    const history = useHistory();
 
-    const history = useHistory()
-    const [connected, setConnected] = useState(false)
-    const { active, account, library, connector, activate, deactivate } = useWeb3React()
+    const voter = new VoteService();
 
-    async function requestToken() {
-        try {
-            var myAccount = await window.ethereum.enable();
-            if (Array.isArray(myAccount)) {
-                myAccount = myAccount[0]
-            }
-            // console.log(myAccount);
-            await sendAccount(myAccount);
-        } catch (e) {
-            console.log(e);
-            console.log("error fetching account");
-        }
+
+    async function fetchResults() {
+        const candidates = await voter.fetchCandidates();
+        var optionstring = ''
+        candidates.forEach(candidate => {
+            let sl = candidate.id + 1
+            optionstring = optionstring + sl + ". " + candidate.name + " - " + candidate.party + ": " + candidate.voteCount + " Votes\n"
+        });
+        alert(optionstring);
     }
+    return (
+        <Container
+            className="App d-flex justify-content-center align-items-center flex-column"
+            fluid
+            style={{ height: "100vh" }}
+        >
+            <h1>Campus Vote</h1>
+            <p>Decentralized and Secure Voting</p>
+            <Button
+                size="lg"
+                className="w-25 m-5"
+                onClick={() => {
+                    history.push("/login");
+                }}
+            >
+                LOGIN
+            </Button>
+            <Button
+                size="lg"
+                className="w-25 m-5"
+                onClick={() => {
+                    history.push("/admin");
+                }}
+            >
+                Admin Panel
+            </Button>
+            <Button
+                size="lg"
+                className="w-25 m-5"
+                onClick={() => {
+                    fetchResults()
+                }}
+            >
+                Get Results
+            </Button>
+            <h4>Powered By:</h4>
+            <p> Polygon, Molaris & Replit</p>
 
-    async function connect() {
-        try {
-            await activate(injected);
-            alert("Connnected to your Metamask")
-            setConnected(true)
-            // history.push('/vote')
-        } catch (error) {
-            console.error(error)
-            alert("Failed connect")
-        }
-    }
-
-    useEffect(() => {
-        connect();
-    }, [])
-
-    if (!connected) {
-        return (
-            <div className="App">
-                Connecting to Metamask
-            </div>
-        );
-    }
-    else {
-        return (
-            <div>
-                <button style={{ height: 75, width: 150, fontSize: 22 }} onClick={requestToken}>
-                    Request token from backend
-                </button>
-            </div>
-        );
-    }
-    // const history = useHistory();
-
-    // return (
-    //     <div className="App">
-    //         campus vote
-
-    //         <button onClick={() => {history.push('/login')}}>LOGIN</button>
-    //     </div>
-    // );
+            <Alert
+                className="w-50 m-5 text-center position-absolute bottom-0"
+                variant={"dark"}
+            >
+                Built for HackForTomorrow
+            </Alert>
+        </Container>
+    );
 }
 
 export default Home;
