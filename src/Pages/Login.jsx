@@ -8,10 +8,15 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import VoteService from "../Helpers/voter";
+
 
 
 function Login() {
   const history = useHistory();
+
+  const voter = new VoteService();
+
 
   const [formData, setformData] = useState({
     username: '',
@@ -38,8 +43,10 @@ function Login() {
       });
   };
 
-  const loginToVote = (e) => {
+  async function loginToVote(e) {
     e.preventDefault();
+
+    // await voter.signUpToBeVoter("name", "id", 1)
 
     axios({
       method: 'POST',
@@ -78,6 +85,7 @@ function Login() {
 
   useEffect(() => {
     connect();
+    // loginToVote();
   }, []);
 
   return (
@@ -123,7 +131,7 @@ function Login() {
             type="password"
             name="password"
             placeholder="Enter password"
-            
+
             value="password123"
             onChange={onFormValueChange}
           />
