@@ -54,7 +54,8 @@ class VoteService {
         const total = await this.ElectionContract.methods.getCandidateNumber().call();
         for (var i = 0; i < total; i++) {
             const candidate = await this.ElectionContract.methods.candidateDetails(i).call();
-            candidateList.push({ id: i, name: candidate.name, party: candidate.party });
+            console.log(candidate);
+            candidateList.push({ id: i, name: candidate.name, party: candidate.party, voteCount: candidate.voteCount });
         }
 
         return candidateList;
