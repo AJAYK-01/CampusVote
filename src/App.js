@@ -25,9 +25,10 @@ function App() {
           }
         </Route>
         <Route path="/admin">
-          {
+          {/* {
             loggedIn && walletConnected ? <Admin /> : <Redirect to='/' />
-          }
+          } */}
+          <Admin />
         </Route>
       </Switch>
     </div>

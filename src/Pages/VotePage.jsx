@@ -32,7 +32,7 @@ function VotePage() {
         // console.log(candidates);
     }
 
-    const [question, setQuestion] = useState("sample question");
+    const [question, setQuestion] = useState("Choose your Leader!!");
 
     const [selectedOption, setSelectedOption] = useState(null);
     async function sendVote(event) {
