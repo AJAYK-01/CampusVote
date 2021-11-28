@@ -23,7 +23,7 @@ Moralis Speedy Nodes for the Node.
 - User logs in with Metamask.
 - User requests for token to Flask backend to have balance to make the voting transaction.
 - Once tokens recieved, User presented with voting options, and casts the vote.
-- Vote casting done with the help of Smart contract deployed to Mumbai Testnet. [View the contract](https://mumbai.polygonscan.com/address/0x06B6C88DBF798608b6be25B05BFd593244bA3360)
+- Vote casting done with the help of Smart contract deployed to Mumbai Testnet. [View the contract](https://mumbai.polygonscan.com/address/0xF6Bf58551F7724dE086CAd26C2eee59A0472A179)
 - Double voting is prevented by Smart Contract.
 - Results can be seen in the home page by clicking Get Results which invokes a view function in the Smart Contract
 

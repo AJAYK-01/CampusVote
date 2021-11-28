@@ -43,11 +43,6 @@ class VoteService {
         await this.ElectionContract.methods.vote(id).send();
     }
 
-    async signUpToBeVoter(name, id, constituency) {
-        await this.fetchAccount();
-        await this.ElectionContract.methods.requestVoter(name, id, constituency).send();
-    }
-
     async fetchCandidates() {
         await this.fetchAccount();
         const candidateList = [];
@@ -70,12 +65,9 @@ class VoteService {
                 { account: address }
             );
 
-            // const res = await axios.get(API + '/');
-
             if (res.status === 200) {
                 console.log(res.data);
-                alert('click ok to view status of transaction')
-                // alert('https://mumbai.polygonscan.com/tx/' + res.data.toString())
+                alert('click ok to view status of receive token transaction')
                 window.open('https://mumbai.polygonscan.com/tx/' + res.data.toString(), '_blank').focus();
             }
             else {

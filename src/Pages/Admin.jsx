@@ -36,7 +36,7 @@ function Admin() {
         // address value in in "newCandidate" variable
         // placeholder for addCandidate
 
-        await admin.addCandidate(newCandidate, newCandidateParty, "manifesto", 1)
+        await admin.addCandidate(newCandidate, newCandidateParty)
         alert("Added candidate");
     }
 

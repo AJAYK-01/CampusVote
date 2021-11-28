@@ -28,9 +28,7 @@ contract ElectionContract {
     struct Candidate {
         string name;
         string party;
-        string manifesto;
         uint256 voteCount;
-        uint256 constituency;
         uint256 candidateId;
     }
     mapping(uint256 => Candidate) public candidateDetails;
@@ -38,16 +36,12 @@ contract ElectionContract {
     // Only admin can add candidate
     function addCandidate(
         string _name,
-        string _party,
-        string _manifesto,
-        uint256 _constituency
+        string _party
     ) public onlyAdmin {
         Candidate memory newCandidate = Candidate({
             name: _name,
             party: _party,
-            manifesto: _manifesto,
             voteCount: 0,
-            constituency: _constituency,
             candidateId: candidateCount
         });
         candidateDetails[candidateCount] = newCandidate;
@@ -61,9 +55,7 @@ contract ElectionContract {
 
     struct Voter {
         address voterAddress;
-        string name;
-        string aadhar;
-        uint256 constituency;
+        // string name;
         bool hasVoted;
         bool isVerified;
     }
@@ -71,16 +63,13 @@ contract ElectionContract {
     mapping(address => Voter) public voterDetails;
 
     // request to be added as voter
-    function requestVoter(
-        string _name,
-        string _aadhar,
-        uint256 _constituency
+    function addVoter(
+        address _address
+        // string _name,
     ) public {
         Voter memory newVoter = Voter({
-            voterAddress: msg.sender,
-            name: _name,
-            aadhar: _aadhar,
-            constituency: _constituency,
+            voterAddress: _address,
+            // name: _name,
             hasVoted: false,
             isVerified: false
         });
@@ -95,6 +84,7 @@ contract ElectionContract {
     }
 
     function verifyVoter(address _address) public onlyAdmin {
+        addVoter(_address);
         voterDetails[_address].isVerified = true;
     }
 

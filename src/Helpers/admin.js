@@ -70,9 +70,9 @@ class AdminService {
         await this.ElectionContract.methods.getCandidateNumber().call();
     }
 
-    async addCandidate(name, party, manifesto, constituency) {
+    async addCandidate(name, party) {
         await this.fetchAccount();
-        const result = await this.ElectionContract.methods.addCandidate(name, party, manifesto, constituency).send();
+        const result = await this.ElectionContract.methods.addCandidate(name, party).send();
         console.log(result);
     }
 
