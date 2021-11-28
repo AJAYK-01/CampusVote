@@ -8,16 +8,16 @@ To make a transparent online voting platform for Colleges using blockchain techn
 Polygon Mumbai testnet used for demo. 
 Moralis Speedy Nodes for the Node.
 
+## Demo
+
+https://youtu.be/Ch__ECkJGxQ
+
 ## Features 
 
 - Faster result declaration.
 - Less effort of manual counting.
 - Seamless, yet transparent voting even during lockdowns.
 - Less need for disputes as votes and data are public and immutable thanks to blockchain.
-
-## Demo
-
-https://youtu.be/Ch__ECkJGxQ
 
 ## Working
 
