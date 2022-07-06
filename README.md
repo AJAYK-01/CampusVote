@@ -10,7 +10,7 @@ Moralis Speedy Nodes for the Node.
 
 ## Demo
 
-https://youtu.be/Ch__ECkJGxQ
+[![Loading](https://img.youtube.com/vi/Ch__ECkJGxQ/0.jpg)](https://www.youtube.com/watch?v=Ch__ECkJGxQ)
 
 ## Features 
 
